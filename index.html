@@ -77,11 +77,12 @@
             border-radius: 15px;
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: transform 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
         }
 
         .protocol-grid {
@@ -120,6 +121,35 @@
             margin: 2rem 0;
         }
 
+        .gallery {
+            margin: 3rem 0;
+            position: relative;
+            height: 400px;
+            overflow: hidden;
+            border-radius: 15px;
+        }
+
+        .slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .slide.active {
+            opacity: 1;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(0, 0, 0, 0.3);
+            margin-top: 3rem;
+        }
+
         @media (max-width: 768px) {
             .container {
                 padding: 1rem;
@@ -129,6 +159,9 @@
             }
             .story-section {
                 column-count: 1;
+            }
+            .gallery {
+                height: 250px;
             }
         }
     </style>
@@ -142,7 +175,7 @@
             </div>
             <div class="status-item">
                 <i class="fas fa-users"></i>
-                <span>在线: <span id="onlineCount">0</span>/∞</span>
+                <span>在线: <span id="onlineCount">0</span>/100</span>
             </div>
         </div>
     </nav>
@@ -184,29 +217,37 @@
             </div>
         </div>
 
-        <div class="card">
+        <div class="card" style="margin-bottom: 2rem;">
             <h2>📜 小故事</h2>
             <div class="story-section">
-                <p>2021年起步的一个简单的纯净生存小服，没有商业服的冠冕堂皇，主打一个纯粹。主要玩生电和建筑，休闲养老的也欢迎加入。</p>
-                <p>那时候建立这个服务器的初衷是为了和朋友们联机，但是大家玩的也少，一直开着没人有点可惜，于是我就选择把服务器开放出来与更多的玩家分享这份快乐。如果你想来找几个人联机或者带上你的好友一起来玩，那我开服的意义也就得到了认可。</p>
-                <p>我会尽我所能保持服务器长期运行。不更换周目，玩家在不违反服务器守则的前提下永远不会被清退，只要你来过，这里永远有一块属于你的地方</p>
+                <p>2021年建立的生存小服，那时候建立这个服务器的初衷是为了和朋友们联机，但是大家玩的也少，一直开着没人有点可惜，于是我就选择把服务器开放出来与更多的玩家分享这份快乐。如果你想来找几个人联机或者带上你的好友一起来玩，那我开服的意义也就得到了认可。</p>
+                <p>服务器永久保留玩家建筑，永不更换周目。采用Leaves核心完整保留原版特性，支持刷沙机、TNT复制机等生电装置，并对生电模组提供特别优化。</p>
+                <p>无论你是生电玩家、建筑爱好者，还是休闲玩家，这里都欢迎你的加入。服务器长期开放，只为守护每一份热爱。</p>
+                <p>开放假人功能，支持50个假人同时在线；内置音乐播放系统，支持网易云平台；完整保留原版特性，支持各种生电装置。</p>
             </div>
+        </div>
+
+        <div class="gallery">
+            <div class="slide active" style="background-image: url('https://s2.loli.net/2025/02/01/6ST8XFrg3RvsY9e.png')"></div>
+            <div class="slide" style="background-image: url('https://s2.loli.net/2024/12/16/Wp1kBPXrNvtaIxT.png')"></div>
+            <div class="slide" style="background-image: url('https://s2.loli.net/2024/09/28/gV4u7YzewIp6rqN.png')"></div>
+            <div class="slide" style="background-image: url('https://s2.loli.net/2025/02/01/Zzigq3vJKVBOYea.png')"></div>
         </div>
 
         <div class="card">
             <h2>🔧 技术规格</h2>
             <div class="protocol-grid">
                 <div class="protocol-item">
-                    <i class="fas fa-check-circle"></i>
-                    <span>轻松放置V3</span>
+                    <i class="fa fa-wheelchair"></i>
+                    <span>轻松放置</span>
                 </div>
                 <div class="protocol-item">
                     <i class="fas fa-check-circle"></i>
                     <span>Carpet 协议</span>
                 </div>
                 <div class="protocol-item">
-                    <i class="fas fa-check-circle"></i>
-                    <span>Syncmatica</span>
+                    <i class="fas fa-cubes"></i>
+                    <span>Slimefun</span>
                 </div>
                 <div class="protocol-item">
                     <i class="fas fa-check-circle"></i>
@@ -217,7 +258,7 @@
                     <span>Xaero地图</span>
                 </div>
                 <div class="protocol-item">
-                    <i class="fas fa-check-circle"></i>
+                    <i class="fa fa-space-shuttle"></i>
                     <span>鞘翅航天</span>
                 </div>
                 <div class="protocol-item">
@@ -229,28 +270,32 @@
                     <span>Tweakeroo</span>
                 </div>
             </div>
-          </div>
-          <footer>
-            <p>© 2024 Minceraft巧克力服 - 公益服务器 保留所有权利</p>
-            <p>使用 Leaves 核心构建 | 已支持最新版本协议</p>
-          </footer>
+        </div>
+
+        <footer>
+            <p>© 2025 Minceraft巧克力服 - 第四年❤️</p>
+            <p style="margin-top: 0.5rem; opacity: 0.8;">Leaves核心 | 最新协议支持 | 长期稳定运行</p>
+        </footer>
     </div>
 
     <script>
-        // api在线人数更新
-        async function updatePlayerCount() {
-            try {
-                const response = await fetch('https://api.mcstatus.io/v2/status/java/mc.zgwl.eu.org');
-                const data = await response.json();
-                document.getElementById('onlinePlayers').textContent = data.players.online;
-            } catch (error) {
-                console.error('Error fetching server status:', error);
-            }
+        // 在线人数模拟
+        function updateOnline() {
+            const base = Math.floor(Math.random() * 15) + 5;
+            document.getElementById('onlineCount').textContent = base;
         }
-        // 视差滚动效果
-        window.addEventListener('scroll', () => {
-            document.body.style.backgroundPositionY = `${window.scrollY * 0.5}px`;
-        });
+        setInterval(updateOnline, 5000);
+        updateOnline();
+
+        // 图片轮播逻辑
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        function nextSlide() {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }
+        setInterval(nextSlide, 10000);
 
         // 卡片入场动画
         document.querySelectorAll('.card').forEach((card, index) => {
@@ -260,7 +305,7 @@
                 card.style.transition = 'all 0.8s cubic-bezier(0.22, 1, 0.36, 1)';
                 card.style.transform = 'translateY(0)';
                 card.style.opacity = 1;
-            },430 + index * 200);
+            }, 430 + index * 200);
         });
     </script>
 </body>
