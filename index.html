@@ -49,6 +49,15 @@
             gap: 0.5rem;
         }
 
+        /* 新增状态图片样式 */
+        .status-item img {
+            height: 24px;
+            vertical-align: middle;
+            border-radius: 4px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+        }
+
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -163,6 +172,10 @@
             .gallery {
                 height: 250px;
             }
+            .status-bar {
+                flex-direction: column;
+                gap: 1rem;
+            }
         }
     </style>
 </head>
@@ -174,8 +187,9 @@
                 <span>状态: <span id="serverStatus">在线</span></span>
             </div>
             <div class="status-item">
-                <i class="fas fa-users"></i>
-                <span>在线: <span id="onlineCount">0</span>/100</span>
+                <img src="https://motd.puddingkc.com/status.png?ip=mc.zgwl.eu.org&style=style1&language=zh" 
+                     alt="服务器实时状态"
+                     title="实时在线人数与服务器状态">
             </div>
         </div>
     </nav>
@@ -279,14 +293,6 @@
     </div>
 
     <script>
-        // 在线人数模拟
-        function updateOnline() {
-            const base = Math.floor(Math.random() * 15) + 5;
-            document.getElementById('onlineCount').textContent = base;
-        }
-        setInterval(updateOnline, 5000);
-        updateOnline();
-
         // 图片轮播逻辑
         let currentSlide = 0;
         const slides = document.querySelectorAll('.slide');
