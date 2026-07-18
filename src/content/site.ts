@@ -10,7 +10,7 @@
 
 /* ---------- 服务器基本信息 ---------- */
 export const server = {
-  name: "Minceraft", // 标题英文主名
+  name: "Chocolate Server", // 标题英文主名
   subtitle: "Chocolate Server", // 标题中文副名
   tagline: "和谐友爱 · 公益服 · 原版生存 · 长期开放",
   foundedYear: 2021, // 建服年份 —— 用于自动计算“第 N 年”，改这里即可
