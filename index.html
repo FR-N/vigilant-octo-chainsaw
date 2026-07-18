@@ -3,317 +3,1144 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minceraft巧克力服 - 原版生存服务器</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>Minceraft 巧克力服 — 纯净生存与生电服务器</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #6c5ce7;
-            --secondary: #a66efa;
-            --dark: #1a1a2e;
-            --light: #f1f1f1;
+            --bg-deep: #07090e;
+            --bg-card: rgba(18, 24, 38, 0.75);
+            --bg-card-hover: rgba(26, 35, 54, 0.85);
+            --border-glass: rgba(255, 255, 255, 0.08);
+            --border-glass-hover: rgba(52, 211, 153, 0.3);
+            --emerald-primary: #10b981;
+            --emerald-glow: rgba(16, 185, 129, 0.35);
+            --amber-accent: #f59e0b;
+            --amber-glow: rgba(245, 158, 11, 0.3);
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --gradient-main: linear-gradient(135deg, #34d399 0%, #10b981 50%, #059669 100%);
+            --gradient-amber: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+            --gradient-hero: linear-gradient(135deg, #ffffff 0%, #cbd5e1 100%);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', '微软雅黑', sans-serif;
+            font-family: 'Plus Jakarta Sans', 'Noto Sans SC', sans-serif;
+            scroll-behavior: smooth;
         }
 
         body {
-            background: linear-gradient(135deg, var(--dark), #16213e);
-            color: var(--light);
-            line-height: 1.6;
+            background-color: var(--bg-deep);
+            color: var(--text-main);
             min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
         }
 
-        .top-bar {
-            background: rgba(0, 0, 0, 0.3);
-            padding: 1rem;
-            backdrop-filter: blur(10px);
-            position: sticky;
+        /* Ambient Background Glows */
+        .bg-glow {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            filter: blur(120px);
+            z-index: -1;
+            opacity: 0.15;
+            pointer-events: none;
+        }
+        .glow-1 { top: -100px; left: -100px; background: var(--emerald-primary); }
+        .glow-2 { top: 40%; right: -200px; background: var(--amber-accent); }
+        .glow-3 { bottom: 10%; left: 20%; background: #3b82f6; }
+
+        /* Navigation Bar */
+        .navbar {
+            position: fixed;
             top: 0;
-            z-index: 100;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(7, 9, 14, 0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-glass);
+            transition: var(--transition);
         }
 
-        .status-bar {
+        .nav-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
             display: flex;
             justify-content: space-between;
-            max-width: 1200px;
-            margin: 0 auto;
+            align-items: center;
         }
 
-        .status-item {
+        .nav-logo {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 800;
+            font-size: 1.25rem;
         }
 
-        /* 新增状态图片样式 */
-        .status-item img {
-            height: 24px;
-            vertical-align: middle;
-            border-radius: 4px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-            transition: transform 0.3s ease;
+        .nav-logo span {
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
+        .nav-logo i {
+            font-size: 1.5rem;
+            color: var(--amber-accent);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--emerald-primary);
+        }
+
+        .nav-cta {
+            background: var(--gradient-main);
+            color: #000;
+            font-weight: 700;
+            padding: 0.6rem 1.25rem;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px var(--emerald-glow);
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px var(--emerald-glow);
+            color: #000;
+        }
+
+        /* Main Container */
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 2rem;
+            padding: 8rem 2rem 4rem 2rem;
         }
 
-        .header {
+        /* Hero Section */
+        .hero {
             text-align: center;
-            padding: 4rem 0;
-            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            padding: 4rem 0 3rem 0;
+            position: relative;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1.25rem;
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.25);
+            border-radius: 50px;
+            color: var(--emerald-primary);
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+            animation: pulse-badge 2s infinite;
+        }
+
+        @keyframes pulse-badge {
+            0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(16, 185, 129, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            font-weight: 900;
+            background: var(--gradient-hero);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+
+        .hero h1 span {
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto 2.5rem auto;
+            line-height: 1.7;
+        }
+
+        /* Server IP Copy Box & CTA */
+        .server-action-box {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
             margin-bottom: 3rem;
         }
 
-        .server-info {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-bottom: 3rem;
+        .ip-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-glass);
+            backdrop-filter: blur(12px);
+            padding: 0.75rem 1.5rem;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+            cursor: pointer;
+            transition: var(--transition);
         }
 
-        .card {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 2rem;
-            border-radius: 15px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        .ip-card:hover {
+            border-color: var(--emerald-primary);
+            background: var(--bg-card-hover);
         }
 
-        .card:hover {
-            transform: translateY(-5px) scale(1.02);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        .ip-card .ip-info {
+            text-align: left;
         }
 
-        .protocol-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
+        .ip-card .ip-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .ip-card .ip-address {
+            font-family: monospace;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--emerald-primary);
+        }
+
+        .btn-primary, .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.9rem 2rem;
+            border-radius: 14px;
+            font-weight: 700;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--gradient-main);
+            color: #07090e;
+            box-shadow: 0 4px 20px var(--emerald-glow);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px var(--emerald-glow);
+        }
+
+        .btn-secondary {
+            background: var(--bg-card);
+            color: var(--text-main);
+            border: 1px solid var(--border-glass);
+            backdrop-filter: blur(12px);
+        }
+
+        .btn-secondary:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--text-muted);
+            transform: translateY(-3px);
+        }
+
+        /* Status Banner Widget */
+        .status-banner {
+            background: var(--bg-card);
+            border: 1px solid var(--border-glass);
+            border-radius: 16px;
+            padding: 1.25rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 4rem;
+            backdrop-filter: blur(16px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        .status-left {
+            display: flex;
+            align-items: center;
             gap: 1rem;
         }
 
-        .protocol-item {
+        .status-dot {
+            width: 12px;
+            height: 12px;
+            background: var(--emerald-primary);
+            border-radius: 50%;
+            box-shadow: 0 0 12px var(--emerald-primary);
+            animation: pulse-dot 1.5s infinite;
+        }
+
+        @keyframes pulse-dot {
+            0% { transform: scale(0.95); opacity: 0.8; }
+            50% { transform: scale(1.2); opacity: 1; }
+            100% { transform: scale(0.95); opacity: 0.8; }
+        }
+
+        .status-text h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .status-text p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .status-img-container img {
+            height: 36px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            transition: var(--transition);
+        }
+
+        .status-img-container img:hover {
+            transform: scale(1.05);
+        }
+
+        /* Grid Layouts & Cards */
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.25rem;
+            font-weight: 800;
+            margin-bottom: 0.75rem;
+            background: var(--gradient-hero);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .section-title p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 4rem;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-glass);
+            border-radius: 20px;
+            padding: 2.5rem;
+            backdrop-filter: blur(16px);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--gradient-main);
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            background: var(--bg-card-hover);
+            border-color: var(--border-glass-hover);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+
+        .card:hover::before {
+            opacity: 1;
+        }
+
+        .card-icon {
+            width: 54px;
+            height: 54px;
+            border-radius: 14px;
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--emerald-primary);
             display: flex;
             align-items: center;
-            padding: 1rem;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 8px;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
         }
 
-        .protocol-item i {
-            margin-right: 1rem;
-            color: var(--secondary);
+        .card h3 {
+            font-size: 1.35rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text-main);
         }
 
-        .cta-button {
-            display: inline-block;
-            padding: 1rem 2rem;
-            background: linear-gradient(45deg, var(--primary), var(--secondary));
-            color: white;
-            text-decoration: none;
-            border-radius: 50px;
-            margin: 1rem 0;
-            transition: transform 0.3s ease;
+        .card p {
+            color: var(--text-muted);
+            line-height: 1.7;
+            font-size: 0.95rem;
         }
 
-        .story-section {
-            column-count: 2;
-            column-gap: 3rem;
-            margin: 2rem 0;
+        /* Feature List Items inside cards */
+        .feature-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: 1.5rem;
         }
 
-        .gallery {
-            margin: 3rem 0;
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.85rem 1.25rem;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            transition: var(--transition);
+        }
+
+        .feature-item:hover {
+            background: rgba(16, 185, 129, 0.05);
+            border-color: rgba(16, 185, 129, 0.2);
+            transform: translateX(4px);
+        }
+
+        .feature-item i {
+            color: var(--emerald-primary);
+            font-size: 1.2rem;
+        }
+
+        .feature-item span {
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        /* Story Section */
+        .story-container {
+            background: var(--bg-card);
+            border: 1px solid var(--border-glass);
+            border-radius: 24px;
+            padding: 3rem;
+            backdrop-filter: blur(16px);
+            margin-bottom: 4rem;
             position: relative;
-            height: 400px;
             overflow: hidden;
-            border-radius: 15px;
+        }
+
+        .story-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        @media (max-width: 900px) {
+            .story-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .story-content h3 {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            background: var(--gradient-hero);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .story-content p {
+            color: var(--text-muted);
+            line-height: 1.8;
+            margin-bottom: 1.25rem;
+            font-size: 1rem;
+        }
+
+        .story-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .stat-box {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            padding: 1.5rem;
+            border-radius: 16px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--emerald-primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* Gallery Carousel */
+        .gallery-section {
+            margin-bottom: 4rem;
+        }
+
+        .gallery-container {
+            position: relative;
+            height: 480px;
+            border-radius: 24px;
+            overflow: hidden;
+            border: 1px solid var(--border-glass);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
         }
 
         .slide {
             position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
             opacity: 0;
-            transition: opacity 1s ease-in-out;
+            transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1), transform 1.2s ease;
             background-size: cover;
             background-position: center;
+            transform: scale(1.05);
         }
 
         .slide.active {
             opacity: 1;
+            transform: scale(1);
         }
 
+        .slide-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 3rem 2rem 2rem 2rem;
+            background: linear-gradient(to top, rgba(7, 9, 14, 0.9), transparent);
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .slide-caption h4 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 0.5rem;
+        }
+
+        .slide-caption p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .gallery-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 1.5rem;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        .gallery-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(7, 9, 14, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            pointer-events: auto;
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+        }
+
+        .gallery-btn:hover {
+            background: var(--emerald-primary);
+            color: #000;
+            border-color: var(--emerald-primary);
+            transform: scale(1.1);
+        }
+
+        .gallery-dots {
+            position: absolute;
+            bottom: 1.5rem;
+            right: 2rem;
+            display: flex;
+            gap: 0.5rem;
+            z-index: 10;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .dot.active {
+            background: var(--emerald-primary);
+            width: 28px;
+            border-radius: 5px;
+        }
+
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--bg-card);
+            border: 1px solid var(--emerald-primary);
+            color: var(--text-main);
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            backdrop-filter: blur(16px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            z-index: 2000;
+            transform: translateY(150%);
+            opacity: 0;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.4s ease;
+        }
+
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .toast i {
+            color: var(--emerald-primary);
+            font-size: 1.25rem;
+        }
+
+        /* Footer */
         footer {
+            background: rgba(7, 9, 14, 0.95);
+            border-top: 1px solid var(--border-glass);
+            padding: 4rem 2rem 2rem 2rem;
             text-align: center;
-            padding: 2rem;
-            background: rgba(0, 0, 0, 0.3);
-            margin-top: 3rem;
         }
 
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .footer-logo span {
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--emerald-primary);
+        }
+
+        .footer-divider {
+            width: 100%;
+            max-width: 600px;
+            height: 1px;
+            background: var(--border-glass);
+            margin: 1rem 0;
+        }
+
+        .copyright {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
         @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
             .container {
-                padding: 1rem;
+                padding: 6rem 1rem 2rem 1rem;
             }
-            .protocol-grid {
-                grid-template-columns: 1fr;
+            .story-container {
+                padding: 1.5rem;
             }
-            .story-section {
-                column-count: 1;
+            .gallery-container {
+                height: 300px;
             }
-            .gallery {
-                height: 250px;
-            }
-            .status-bar {
+            .status-banner {
                 flex-direction: column;
-                gap: 1rem;
+                align-items: flex-start;
             }
         }
     </style>
 </head>
 <body>
-    <nav class="top-bar">
-        <div class="status-bar">
-            <div class="status-item">
-                <i class="fas fa-signal"></i>
-                <span>状态: <span id="serverStatus">在线</span></span>
+    <!-- Ambient glows -->
+    <div class="bg-glow glow-1"></div>
+    <div class="bg-glow glow-2"></div>
+    <div class="bg-glow glow-3"></div>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">
+                <i class="fas fa-cube"></i>
+                <span>Minceraft 巧克力服</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#features">服务器特色</a></li>
+                <li><a href="#story">四年历程</a></li>
+                <li><a href="#gallery">风景图库</a></li>
+                <li><a href="#tech">技术规格</a></li>
+                <li><a href="https://doc.mc.zgwl.eu.org/" target="_blank">文档站 <i class="fas fa-external-link-alt" style="font-size:0.75rem;"></i></a></li>
+            </ul>
+            <a href="https://doc.mc.zgwl.eu.org/" target="_blank" class="nav-cta">加入服务器</a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Hero Section -->
+        <header class="hero">
+            <div class="hero-badge">
+                <i class="fas fa-shield-alt"></i> 稳定运行第 4 年 · 永久不删档
             </div>
-            <div class="status-item">
+            <h1>🍫 <span>Minceraft</span> 巧克力服</h1>
+            <p>一个和谐友爱、永不删档的纯净原版生存公益服务器。支持全套生电协议与特色系统，给每一位热爱方块世界的玩家打造纯粹的温暖家园。</p>
+            
+            <div class="server-action-box">
+                <div class="ip-card" onclick="copyIP()" title="点击复制服务器地址">
+                    <i class="fas fa-server fa-lg" style="color: var(--emerald-primary);"></i>
+                    <div class="ip-info">
+                        <div class="ip-label">服务器直连地址</div>
+                        <div class="ip-address">mc.zgwl.eu.org</div>
+                    </div>
+                    <i class="fas fa-copy" style="color: var(--text-muted); margin-left: 0.5rem;"></i>
+                </div>
+                <a href="https://jq.qq.com/?_wv=1027&k=487881257" target="_blank" class="btn-primary">
+                    <i class="fab fa-qq"></i> 加入官方 QQ 群
+                </a>
+                <a href="https://doc.mc.zgwl.eu.org/" target="_blank" class="btn-secondary">
+                    <i class="fas fa-book-open"></i> 查看服务器文档
+                </a>
+            </div>
+        </header>
+
+        <!-- Status Banner -->
+        <div class="status-banner">
+            <div class="status-left">
+                <div class="status-dot"></div>
+                <div class="status-text">
+                    <h3>服务器实时状态：<span id="serverStatusText" style="color: var(--emerald-primary);">在线运行中</span></h3>
+                    <p>Leaves 核心驱动 · 极低延迟 · 欢迎随时加入游玩</p>
+                </div>
+            </div>
+            <div class="status-img-container">
                 <img src="https://motd.puddingkc.com/status.png?ip=mc.zgwl.eu.org&style=style1&language=zh" 
                      alt="服务器实时状态"
                      title="实时在线人数与服务器状态">
             </div>
         </div>
-    </nav>
 
-    <div class="container">
-        <header class="header">
-            <h1>🍫 Minceraft巧克力服</h1>
-            <p>和谐友爱 | 公益服 | 原版生存 | 长期开放</p>
-        </header>
+        <!-- Features Section -->
+        <div id="features" class="section-title">
+            <h2>核心特色与支持</h2>
+            <p>精心调优的生存环境，满足从休闲建筑到硬核生电的所有需求</p>
+        </div>
 
-        <div class="server-info">
+        <div class="grid-2">
             <div class="card">
-                <h2>📡 连接信息</h2>
-                <p>地址: <code>mc.zgwl.eu.org</code></p>
-                <p>加入QQ群 487881257</p>
-                <a href="https://doc.mc.zgwl.eu.org/" class="cta-button">服务器文档站</a>
-            </div>
-
-            <div class="card">
-                <h2>🚀 特色支持</h2>
-                <div class="protocol-grid">
-                    <div class="protocol-item">
+                <div class="card-icon">
+                    <i class="fas fa-microchip"></i>
+                </div>
+                <h3>硬核生电与协议支持</h3>
+                <p>完整保留原版特性，搭载 Leaves 核心及 Carpet 协议，为生电玩家提供顶级的性能保障与机制优化。</p>
+                <div class="feature-list">
+                    <div class="feature-item">
                         <i class="fas fa-cubes"></i>
-                        <span>生电全套协议支持</span>
+                        <span>生电全套协议与刷沙/TNT复制支持</span>
                     </div>
-                    <div class="protocol-item">
-                        <i class="fas fa-music"></i>
-                        <span>AllMusic 点歌系统</span>
-                    </div>
-                    <div class="protocol-item">
+                    <div class="feature-item">
                         <i class="fas fa-robot"></i>
-                        <span>假人系统</span>
+                        <span>高性能假人系统（Carpet Bots）</span>
                     </div>
-                    <div class="protocol-item">
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>严谨优化的实体与区块红石效率</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">
+                    <i class="fas fa-heart"></i>
+                </div>
+                <h3>和谐氛围与长期陪伴</h3>
+                <p>服务器建立于 2021 年，历经四年风雨。我们坚持永久不删档、不更换周目，守护你每一块精雕细琢的方块建筑。</p>
+                <div class="feature-list">
+                    <div class="feature-item">
                         <i class="fas fa-database"></i>
-                        <span>永不删档</span>
+                        <span>永久不删档，建筑与回忆永存</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-music"></i>
+                        <span>AllMusic 点歌系统（支持网易云音乐）</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-users"></i>
+                        <span>友善活跃的玩家社区与互助氛围</span>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="card" style="margin-bottom: 2rem;">
-            <h2>📜 小故事</h2>
-            <div class="story-section">
-                <p>2021年建立的生存小服，那时候建立这个服务器的初衷是为了和朋友们联机，但是大家玩的也少，一直开着没人有点可惜，于是我就选择把服务器开放出来与更多的玩家分享这份快乐。如果你想来找几个人联机或者带上你的好友一起来玩，那我开服的意义也就得到了认可。</p>
-                <p>服务器永久保留玩家建筑，永不更换周目。采用Leaves核心完整保留原版特性，支持刷沙机、TNT复制机等生电装置，并对生电模组提供特别优化。</p>
-                <p>无论你是生电玩家、建筑爱好者，还是休闲玩家，这里都欢迎你的加入。服务器长期开放，只为守护每一份热爱。</p>
-                <p>内置音乐播放系统，支持网易云平台；完整保留原版特性，支持各种生电装置。</p>
+        <!-- Story / Background Section -->
+        <div id="story" class="story-container">
+            <div class="story-grid">
+                <div class="story-content">
+                    <h3>📜 巧克力服的故事</h3>
+                    <p>2021年建立的生存小服，那时候建立这个服务器的初衷是为了和朋友们联机。随着时间推移，大家各自忙碌，一直开着没人显得有些可惜。于是我选择将服务器公开分享给更多的玩家。</p>
+                    <p>如果你想找几个人一起联机，或者带上好友来到这里创造属于你们的传奇，那么我开服的初衷也就得到了最好的延续。服务器长期开放，只为守护每一份纯粹的方块热爱。</p>
+                </div>
+                <div>
+                    <div class="story-stats">
+                        <div class="stat-box">
+                            <div class="stat-number">4+</div>
+                            <div class="stat-label">年稳定运行</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-number">0</div>
+                            <div class="stat-label">删档与换周目</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-number">100%</div>
+                            <div class="stat-label">原版生电兼容</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-number">24/7</div>
+                            <div class="stat-label">全天候在线陪伴</div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <div class="gallery">
-            <div class="slide active" style="background-image: url('https://s2.loli.net/2025/02/01/6ST8XFrg3RvsY9e.png')"></div>
-            <div class="slide" style="background-image: url('https://s2.loli.net/2024/12/16/Wp1kBPXrNvtaIxT.png')"></div>
-            <div class="slide" style="background-image: url('https://s2.loli.net/2024/09/28/gV4u7YzewIp6rqN.png')"></div>
-            <div class="slide" style="background-image: url('https://s2.loli.net/2025/02/01/Zzigq3vJKVBOYea.png')"></div>
+        <!-- Gallery Section -->
+        <div id="gallery" class="section-title">
+            <h2>服务器风光掠影</h2>
+            <p>探索玩家们在巧克力服中创造的壮丽建筑与难忘瞬间</p>
         </div>
 
-        <div class="card">
-            <h2>🔧 技术规格</h2>
-            <div class="protocol-grid">
-                <div class="protocol-item">
-                    <i class="fa fa-wheelchair"></i>
-                    <span>轻松放置</span>
+        <div class="gallery-section">
+            <div class="gallery-container">
+                <div class="slide active" style="background-image: url('https://s2.loli.net/2025/02/01/6ST8XFrg3RvsY9e.png')">
+                    <div class="slide-overlay">
+                        <div class="slide-caption">
+                            <h4>壮丽主城与建筑</h4>
+                            <p>玩家们协力打造的精美建筑群落</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="protocol-item">
-                    <i class="fas fa-check-circle"></i>
-                    <span>Carpet 协议</span>
+                <div class="slide" style="background-image: url('https://s2.loli.net/2024/12/16/Wp1kBPXrNvtaIxT.png')">
+                    <div class="slide-overlay">
+                        <div class="slide-caption">
+                            <h4>硬核生电基地</h4>
+                            <p>高效运转的自动化生电机器与工程奇观</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="protocol-item">
+                <div class="slide" style="background-image: url('https://s2.loli.net/2024/09/28/gV4u7YzewIp6rqN.png')">
+                    <div class="slide-overlay">
+                        <div class="slide-caption">
+                            <h4>温馨小镇风光</h4>
+                            <p>各具特色的玩家个人家园与路网连接</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="slide" style="background-image: url('https://s2.loli.net/2025/02/01/Zzigq3vJKVBOYea.png')">
+                    <div class="slide-overlay">
+                        <div class="slide-caption">
+                            <h4>星空与夜景</h4>
+                            <p>在方块世界中仰望浪漫的夜空与日出</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-nav">
+                    <button class="gallery-btn" onclick="prevSlide()"><i class="fas fa-chevron-left"></i></button>
+                    <button class="gallery-btn" onclick="nextSlide()"><i class="fas fa-chevron-right"></i></button>
+                </div>
+
+                <div class="gallery-dots">
+                    <span class="dot active" onclick="currentSlideIndex(0)"></span>
+                    <span class="dot" onclick="currentSlideIndex(1)"></span>
+                    <span class="dot" onclick="currentSlideIndex(2)"></span>
+                    <span class="dot" onclick="currentSlideIndex(3)"></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Technical Specifications -->
+        <div id="tech" class="section-title">
+            <h2>技术规格与实用模组</h2>
+            <p>为流畅游戏体验与生电玩法深度定制的客户端/服务端支持</p>
+        </div>
+
+        <div class="grid-4">
+            <div class="card" style="padding: 1.75rem;">
+                <div class="card-icon" style="width: 44px; height: 44px; font-size: 1.25rem; margin-bottom: 1rem;">
                     <i class="fas fa-cubes"></i>
-                    <span>Slimefun</span>
                 </div>
-                <div class="protocol-item">
-                    <i class="fas fa-check-circle"></i>
-                    <span>Bladeren</span>
+                <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">Carpet 协议</h3>
+                <p style="font-size: 0.85rem;">支持地毯端规则、假人与红石精准控制。</p>
+            </div>
+            <div class="card" style="padding: 1.75rem;">
+                <div class="card-icon" style="width: 44px; height: 44px; font-size: 1.25rem; margin-bottom: 1rem;">
+                    <i class="fas fa-leaf"></i>
                 </div>
-                <div class="protocol-item">
-                    <i class="fas fa-check-circle"></i>
-                    <span>Xaero地图</span>
+                <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">Leaves 核心</h3>
+                <p style="font-size: 0.85rem;">高性能原版服务端，完美还原并优化生电机制。</p>
+            </div>
+            <div class="card" style="padding: 1.75rem;">
+                <div class="card-icon" style="width: 44px; height: 44px; font-size: 1.25rem; margin-bottom: 1rem;">
+                    <i class="fas fa-map-marked-alt"></i>
                 </div>
-                <div class="protocol-item">
-                    <i class="fa fa-space-shuttle"></i>
-                    <span>鞘翅航天</span>
+                <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">Xaero 地图</h3>
+                <p style="font-size: 0.85rem;">支持小地图与世界地图，再也不怕长途远行迷路。</p>
+            </div>
+            <div class="card" style="padding: 1.75rem;">
+                <div class="card-icon" style="width: 44px; height: 44px; font-size: 1.25rem; margin-bottom: 1rem;">
+                    <i class="fas fa-space-shuttle"></i>
                 </div>
-                <div class="protocol-item">
-                    <i class="fas fa-check-circle"></i>
-                    <span>AppleSkin</span>
+                <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">鞘翅航天 & 轻松放置</h3>
+                <p style="font-size: 0.85rem;">提升建筑与生存效率的实用客户端优化模组。</p>
+            </div>
+            <div class="card" style="padding: 1.75rem;">
+                <div class="card-icon" style="width: 44px; height: 44px; font-size: 1.25rem; margin-bottom: 1rem;">
+                    <i class="fas fa-flask"></i>
                 </div>
-                <div class="protocol-item">
-                    <i class="fas fa-check-circle"></i>
-                    <span>Tweakeroo</span>
+                <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">Slimefun 粘液科技</h3>
+                <p style="font-size: 0.85rem;">丰富的高科技自动化合成与生存扩展玩法。</p>
+            </div>
+            <div class="card" style="padding: 1.75rem;">
+                <div class="card-icon" style="width: 44px; height: 44px; font-size: 1.25rem; margin-bottom: 1rem;">
+                    <i class="fas fa-apple-alt"></i>
                 </div>
+                <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">AppleSkin & 状态显示</h3>
+                <p style="font-size: 0.85rem;">精准显示饱食度与各类Buff状态，生存更安心。</p>
+            </div>
+            <div class="card" style="padding: 1.75rem;">
+                <div class="card-icon" style="width: 44px; height: 44px; font-size: 1.25rem; margin-bottom: 1rem;">
+                    <i class="fas fa-sliders-h"></i>
+                </div>
+                <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">Tweakeroo 辅助</h3>
+                <p style="font-size: 0.85rem;">便捷的客户端方块放置与实用视角辅助功能。</p>
+            </div>
+            <div class="card" style="padding: 1.75rem;">
+                <div class="card-icon" style="width: 44px; height: 44px; font-size: 1.25rem; margin-bottom: 1rem;">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">安全防护系统</h3>
+                <p style="font-size: 0.85rem;">多重备份与安全防护，保障玩家财产与建筑安全。</p>
             </div>
         </div>
+    </div>
 
-        <footer>
-            <p>© 2025 Minceraft巧克力服 - 第四年❤️</p>
-            <p style="margin-top: 0.5rem; opacity: 0.8;">Leaves核心 | 最新协议支持 | 长期稳定运行</p>
-        </footer>
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <i class="fas fa-cube" style="color: var(--emerald-primary);"></i>
+                <span>Minceraft 巧克力服</span>
+            </div>
+            <ul class="footer-links">
+                <li><a href="#features">核心特色</a></li>
+                <li><a href="#story">四年历程</a></li>
+                <li><a href="#gallery">风景图库</a></li>
+                <li><a href="#tech">技术规格</a></li>
+                <li><a href="https://doc.mc.zgwl.eu.org/" target="_blank">文档站</a></li>
+                <li><a href="https://jq.qq.com/?_wv=1027&k=487881257" target="_blank">QQ群: 487881257</a></li>
+            </ul>
+            <div class="footer-divider"></div>
+            <p class="copyright">© 2025 - 2026 Minceraft 巧克力服 — 陪伴你走过第四年的美好时光 ❤️</p>
+            <p style="color: var(--text-muted); font-size: 0.8rem;">Leaves 核心 | 长期稳定运行 | 公益纯净生存</p>
+        </div>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast">
+        <i class="fas fa-check-circle"></i>
+        <div>
+            <div style="font-weight: 700; font-size: 0.95rem;">服务器地址已复制</div>
+            <div style="font-size: 0.8rem; color: var(--text-muted);">mc.zgwl.eu.org - 快打开游戏加入吧！</div>
+        </div>
     </div>
 
     <script>
-        // 图片轮播逻辑
+        // Copy IP Function
+        function copyIP() {
+            const ip = 'mc.zgwl.eu.org';
+            navigator.clipboard.writeText(ip).then(() => {
+                showToast();
+            }).catch(err => {
+                // Fallback for older browsers
+                const textarea = document.createElement('textarea');
+                textarea.value = ip;
+                document.body.appendChild(textarea);
+                textarea.select();
+                try {
+                    document.execCommand('copy');
+                    showToast();
+                } catch (e) {
+                    console.error('Failed to copy text', e);
+                }
+                document.body.removeChild(textarea);
+            });
+        }
+
+        function showToast() {
+            const toast = document.getElementById('toast');
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        // Image Gallery Carousel Logic
         let currentSlide = 0;
         const slides = document.querySelectorAll('.slide');
-        function nextSlide() {
-            slides[currentSlide].classList.remove('active');
-            currentSlide = (currentSlide + 1) % slides.length;
-            slides[currentSlide].classList.add('active');
-        }
-        setInterval(nextSlide, 10000);
+        const dots = document.querySelectorAll('.dot');
+        let slideInterval = setInterval(nextSlide, 6000);
 
-        // 卡片入场动画
-        document.querySelectorAll('.card').forEach((card, index) => {
-            card.style.transform = `translateY(${index % 2 ? 20 : -20}px)`;
-            card.style.opacity = 0;
-            setTimeout(() => {
-                card.style.transition = 'all 0.8s cubic-bezier(0.22, 1, 0.36, 1)';
-                card.style.transform = 'translateY(0)';
-                card.style.opacity = 1;
-            }, 430 + index * 200);
-        });
+        function showSlide(index) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+            
+            currentSlide = (index + slides.length) % slides.length;
+            slides[currentSlide].classList.add('active');
+            dots[currentSlide].classList.add('active');
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function prevSlide() {
+            showSlide(currentSlide - 1);
+        }
+
+        function currentSlideIndex(index) {
+            showSlide(index);
+            resetInterval();
+        }
+
+        function resetInterval() {
+            clearInterval(slideInterval);
+            slideInterval = setInterval(nextSlide, 6000);
+        }
+
+        // Pause slideshow on hover
+        const galleryContainer = document.querySelector('.gallery-container');
+        galleryContainer.addEventListener('mouseenter', () => clearInterval(slideInterval));
+        galleryContainer.addEventListener('mouseleave', () => slideInterval = setInterval(nextSlide, 6000));
     </script>
 </body>
 </html>
-
