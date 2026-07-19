@@ -1,33 +1,53 @@
-/* Local copy of Google Fonts CSS (partial).\n+   Replace remote URLs with local ./<file>.woff2 after downloading font files. */
-
 /* Fraunces - latin */
+/*NOTE: Please note that after adjusting the font family and .ttf file, this font will not be displayed. If you wish to use it, please declare it manually.*/
 @font-face {
   font-family: 'Fraunces';
   font-style: normal;
   font-weight: 300 600;
   font-display: swap;
-  src: url('/fonts/6NU58FyLNQOQZAnv9ZwNjucMHVn85Ni7emAe9lKqZTnbB-gzTK0K1ChjdfeQ_5Y.woff2') format('woff2');
-  unicode-range: U+0000-00FF;
+  src: url('/fonts/Fraunces-VF.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Fraunces';
+  font-style: italic;
+  font-weight: 300 600;
+  font-display: swap;
+  src: url('/fonts/Fraunces-Italic-VF.woff2') format('woff2');
 }
 
 /* Hanken Grotesk - latin */
+/*NOTE: Please note that after adjusting the font family and .ttf file, this font's italic version will not be displayed. If you wish to use it, please declare it manually.*/
 @font-face {
   font-family: 'Hanken Grotesk';
   font-style: normal;
   font-weight: 300 600;
   font-display: swap;
-  src: url(https://fonts.gstatic.com/s/hankengrotesk/v2/...) format('woff2');
-  unicode-range: U+0000-00FF;
+  src: url('/fonts/HankenGrotesk-VF.woff2') format('woff2');
 }
 
-/* Noto Serif SC - simplified chinese (partial) */
 @font-face {
-  font-family: 'Noto Serif SC';
-  font-style: normal;
-  font-weight: 400;
+  font-family: 'Hanken Grotesk';
+  font-style: italic;
+  font-weight: 300 600;
   font-display: swap;
-  src: url('/fonts/H4chBXePl9DZ0Xe7gG9cyOj7oqP0dTpxZbB9E9gjjmzKvaeKHUTtJDWv3z-us4bxD8F5og.21.woff2') format('woff2');
-  unicode-range: U+4E00-9FFF;
+  src: url('/fonts/HankenGrotesk-Italic-VF.woff2') format('woff2');
 }
 
-/* NOTE: This is a partial/local copy of the Google Fonts CSS.\n+   To fully self-host: download each referenced .woff2 from fonts.gstatic.com into this folder,\n+   then change each `src: url(...)` to `src: url('./<file>.woff2') format('woff2');` */
+/* Source Han Serif SC - simplified chinese (partial) */
+@font-face {
+  font-family: 'Source Han Serif SC';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('/fonts/SourceHanSerifSC-subset.woff2') format('woff2');
+}
+
+/* Source Han Sans SC - simplified chinese (partial) */
+@font-face {
+  font-family: 'Source Han Sans SC';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("/fonts/SourceHanSansSC-subset.woff2") format('woff2');
+}
