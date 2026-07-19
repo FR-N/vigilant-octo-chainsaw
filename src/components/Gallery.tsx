@@ -3,7 +3,10 @@ import { GALLERY_SIZES, gallery } from "@/content/site";
 
 export function Gallery() {
   return (
-    <section id="gallery" className="scroll-mt-24 py-20 md:py-32">
+    <section
+      id="gallery"
+      className="flex min-h-[calc(100vh-4rem)] scroll-mt-16 flex-col justify-center py-20 md:py-32"
+    >
       <div className="mx-auto max-w-7xl px-6 md:px-12">
         <Reveal>
           <div className="flex items-end justify-between gap-6">

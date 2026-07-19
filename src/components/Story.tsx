@@ -3,8 +3,11 @@ import { story } from "@/content/site";
 
 export function Story() {
   return (
-    <section id="story" className="scroll-mt-24 bg-surface text-surface-fg">
-      <div className="mx-auto max-w-7xl px-6 py-20 md:px-12 md:py-32">
+    <section
+      id="story"
+      className="flex min-h-[calc(100vh-4rem)] scroll-mt-16 flex-col justify-center bg-surface text-surface-fg"
+    >
+      <div className="mx-auto w-full max-w-7xl px-6 py-20 md:px-12 md:py-32">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-12">
           <div className="lg:col-span-5">
             <Reveal>

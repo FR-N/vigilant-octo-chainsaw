@@ -8,7 +8,10 @@ function pad(n: number) {
 
 export function Extras() {
   return (
-    <section id="extras" className="scroll-mt-24 py-20 md:py-32">
+    <section
+      id="extras"
+      className="flex min-h-[calc(100vh-4rem)] scroll-mt-16 flex-col justify-center py-20 md:py-32"
+    >
       <div className="mx-auto max-w-7xl px-6 md:px-12">
         <Reveal>
           <div className="flex flex-wrap items-end justify-between gap-6">

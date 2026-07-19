@@ -16,7 +16,7 @@ export default function App() {
       <Nav />
       <main>
         <Hero />
-        <div className="mt-16 md:mt-24">
+        <div id="join" className="mt-16 scroll-mt-16 md:mt-24">
           <Marquee items={ticker} />
         </div>
         <Join />

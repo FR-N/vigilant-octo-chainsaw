@@ -7,7 +7,10 @@ function pad(n: number) {
 
 export function Features() {
   return (
-    <section id="features" className="scroll-mt-24 py-20 md:py-32">
+    <section
+      id="features"
+      className="flex min-h-[calc(100vh-4rem)] scroll-mt-16 flex-col justify-center py-20 md:py-32"
+    >
       <div className="mx-auto max-w-7xl px-6 md:px-12">
         <Reveal>
           <div className="flex items-baseline gap-5">

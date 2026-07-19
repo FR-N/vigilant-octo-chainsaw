@@ -3,7 +3,7 @@ import { join, server } from "@/content/site";
 
 export function Join() {
   return (
-    <section id="join" className="scroll-mt-24 py-20 md:py-32">
+    <section className="py-20 md:py-32">
       <div className="mx-auto max-w-7xl px-6 md:px-12">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-12">
           <div className="lg:col-span-4">
