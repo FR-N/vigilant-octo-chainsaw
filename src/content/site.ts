@@ -238,7 +238,7 @@ export const gallery: {
   {
     src: "https://s2.loli.net/2025/02/01/Zzigq3vJKVBOYea.png",
     alt: "玩家聚落与建筑群",
-    caption: "图 13 — 建筑群 · 2025.02",
+    caption: "图 13 — 翡翠城 · 2025.02",
     size: "wide",
   },
   {
@@ -256,7 +256,7 @@ export const gallery: {
   {
     src: "https://files.seeusercontent.com/2026/07/18/iY6c/PixPin_2026-07-19_01-36-56.png",
     alt: "玩家聚落与建筑群",
-    caption: "图 16 — 建筑群 · 2026.07",
+    caption: "图 16 — 翡翠城周边· 2026.07",
     size: "full",
   },
 ];
