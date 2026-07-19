@@ -75,11 +75,11 @@
 }
 .marquee-track {
   animation: marquee 42s linear infinite;
-}
+}/*
 .marquee-group:hover .marquee-track {
   animation-play-state: paused;
 }
-
+*/
 /* ---- Live status pulse ---- */
 @keyframes softpulse {
   0%,
