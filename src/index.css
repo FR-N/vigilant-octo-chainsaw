@@ -6,8 +6,8 @@
   --color-surface: #1c1c1c;
   --color-surface-fg: #f9f8f6;
 
-  --font-serif: "Fraunces", "Noto Serif SC", Georgia, "Times New Roman", serif;
-  --font-sans: "Hanken Grotesk", "Noto Sans SC", ui-sans-serif, system-ui,
+  --font-serif:  Georgia,"Fraunces","Source Han Serif SC", serif;
+  --font-sans: "Hanken Grotesk", "Source Han Sans SC", ui-sans-serif, system-ui,
     sans-serif;
 
   --ease-editorial: cubic-bezier(0.22, 1, 0.36, 1);
