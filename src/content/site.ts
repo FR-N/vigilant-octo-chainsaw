@@ -60,11 +60,13 @@ export const ticker: string[] = [
   "假人系统",
   "永不删档",
   "Leaves 核心",
+  "WARP",
   "Carpet 协议",
   "东方众",
   "原版特性",
   "鞘翅航天",
-  "最新协议支持",
+  "ATD系统",
+  "CoreProtect防护",
 ];
 
 /* ---------- Hero（首屏）---------- */
@@ -72,7 +74,7 @@ export const hero = {
   headlineTop: "Minceraft",
   headlineBottom: "巧克力服",
   sub: "一座始于 2021 年的原版生存小服——长期开放，永不删档，只为守护每一份热爱。",
-  addressHint: "原版客户端直连 · 无需模组",
+  addressHint: "原版客户端直连 · 可选MOD",
   image: {
     src: "https://files.seeusercontent.com/2026/07/18/ff7A/PixPin_2026-07-19_02-05-21.png",
     alt: "Minceraft 巧克力服服务器建设实拍",
@@ -252,7 +254,7 @@ export const gallery: {
   {
     src: "https://files.seeusercontent.com/2026/07/18/iY6c/PixPin_2026-07-19_01-36-56.png",
     alt: "玩家聚落与建筑群",
-    caption: "图 16 — 建筑群 · 2026.7",
+    caption: "图 16 — 建筑群 · 2026.07",
     size: "full",
   },
 ];
@@ -263,12 +265,13 @@ export const specs: { name: string; note: string }[] = [
   { name: "Slimefun", note: "粘液科技扩展" },
   { name: "Bladeren", note: "客户端兼容协议" },
   { name: "Xaero 地图", note: "小地图与导航" },
+  { name: "CoreProtect", note: "快速、高效的数据记录及反破坏工具" },
   { name: "轻松放置", note: "便捷建造辅助" },
   { name: "鞘翅航天", note: "飞行优化体验" },
   { name: "AppleSkin", note: "饱和度信息显示" },
   { name: "Tweakeroo", note: "灵活操作增强" },
   { name: "TACZ", note: "枪械子服模组" },
-  { name: "YSM 模型", note: "玩家模型兼容" },
+  { name: "YSM 模型", note: "玩家模型支持" },
   { name: "Jade", note: "玉🔍mod服务端兼容" },
   { name: "GLMpages", note: "就算是GLM的但改的我手都抽筋了呜呜" },
 ];
