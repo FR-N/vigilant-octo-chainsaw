@@ -15,7 +15,7 @@ export const server = {
   tagline: "和谐友爱 · 公益服 · 原版生存 · 长期开放",
   foundedYear: 2021, // 建服年份 —— 用于自动计算“第 N 年”，改这里即可
   address: "mc.zgwl.eu.org", // 服务器地址
-  qqGroup: "487881257", // QQ 群号
+  qqGroup: "779889427", // QQ 群号
   docsUrl: "https://doc.mc.zgwl.eu.org/", // 服务器文档站
   // 实时状态图片（在线人数 / 状态）
   statusImg:
