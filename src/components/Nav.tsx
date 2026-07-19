@@ -52,7 +52,7 @@ export function Nav() {
           ))}
         </nav>
 
-        <div className="flex items-center gap-4 md:gap-6">
+        <div className="ml-auto flex items-center gap-4 md:gap-6">
           <ThemeToggle />
           <div className="hidden items-center gap-6 md:flex">
             <a
@@ -63,36 +63,36 @@ export function Nav() {
               <Arrow className="group-hover:translate-x-1" />
             </a>
           </div>
-        </div>
 
-        <button
-          type="button"
-          onClick={() => setOpen((v) => !v)}
-          className="relative flex h-10 w-10 items-center justify-center md:hidden"
-          aria-label="菜单"
-          aria-expanded={open}
-        >
-          <span className="relative block h-3 w-6">
-            <span
-              className={cn(
-                "absolute left-0 block h-px w-6 bg-ink transition-all duration-300",
-                open ? "top-1.5 rotate-45" : "top-0"
-              )}
-            />
-            <span
-              className={cn(
-                "absolute left-0 top-1.5 block h-px w-6 bg-ink transition-all duration-300",
-                open ? "opacity-0" : "opacity-100"
-              )}
-            />
-            <span
-              className={cn(
-                "absolute left-0 block h-px w-6 bg-ink transition-all duration-300",
-                open ? "top-1.5 -rotate-45" : "top-3"
-              )}
-            />
-          </span>
-        </button>
+          <button
+            type="button"
+            onClick={() => setOpen((v) => !v)}
+            className="relative flex h-10 w-10 items-center justify-center md:hidden"
+            aria-label="菜单"
+            aria-expanded={open}
+          >
+            <span className="relative block h-3 w-6">
+              <span
+                className={cn(
+                  "absolute left-0 block h-px w-6 bg-ink transition-all duration-300",
+                  open ? "top-1.5 rotate-45" : "top-0"
+                )}
+              />
+              <span
+                className={cn(
+                  "absolute left-0 top-1.5 block h-px w-6 bg-ink transition-all duration-300",
+                  open ? "opacity-0" : "opacity-100"
+                )}
+              />
+              <span
+                className={cn(
+                  "absolute left-0 block h-px w-6 bg-ink transition-all duration-300",
+                  open ? "top-1.5 -rotate-45" : "top-3"
+                )}
+              />
+            </span>
+          </button>
+        </div>
       </div>
 
       <div
