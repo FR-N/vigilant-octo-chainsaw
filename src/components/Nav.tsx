@@ -40,7 +40,7 @@ export function Nav() {
           Chocolate
         </a>
 
-        <nav className="hidden items-center gap-9 text-sm md:flex">
+        <nav className="hidden items-center gap-9 text-sm md:flex md:mx-auto">
           {LINKS.map((l) => (
             <a
               key={l.href}
@@ -52,7 +52,7 @@ export function Nav() {
           ))}
         </nav>
 
-        <div className="ml-auto flex items-center gap-4 md:gap-6">
+        <div className="flex items-center gap-4 md:gap-6">
           <ThemeToggle />
           <div className="hidden items-center gap-6 md:flex">
             <a
