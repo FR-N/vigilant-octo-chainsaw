@@ -37,7 +37,7 @@ export function Nav() {
           href="#top"
           className="font-serif text-base tracking-[0.35em] uppercase"
         >
-          Minceraft
+          Chocolate
         </a>
 
         <nav className="hidden items-center gap-9 text-sm md:flex">
@@ -55,10 +55,6 @@ export function Nav() {
         <div className="flex items-center gap-4 md:gap-6">
           <ThemeToggle />
           <div className="hidden items-center gap-6 md:flex">
-            <span className="flex items-center gap-2 text-[0.7rem] uppercase tracking-[0.2em] text-ink/50">
-              <span className="pulse-dot inline-block h-1.5 w-1.5 bg-ink" />
-              在线
-            </span>
             <a
               href="#join"
               className="group inline-flex items-center gap-2 text-sm"
