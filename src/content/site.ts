@@ -53,20 +53,23 @@ export const volume = toRoman(now.age); // 罗马数字卷号
 
 /* ---------- 顶部跑马灯（滚动横幅）文字，可随意增减 ---------- */
 export const ticker: string[] = [
-  "生电全套协议",
+  "生电Protocol",
   "AllMusic 点歌",
   "TACZ 子服",
-  "YSM 玩家模型",
-  "假人系统",
+  "YSM",
+  "BOT",
   "DOM",
   "永不删档",
   "Leaves 核心",
+  "Xaero",
+  "Jade",
+  "Tweakeroo",
   "Creeper防爆",
   "WARP",
   "Carpet 协议",
-  "东方众",
+  "东方project",
   "原版特性",
-  "鞘翅航天",
+  "Elytra Aeronautics",
   "ATD系统",
   "CoreProtect防护",
 ];
@@ -112,7 +115,7 @@ export const story = {
 /* ---------- 03 · 特色支持（编号会自动 01 02 03…） ---------- */
 export const features: { title: string; desc: string }[] = [
   {
-    title: "生电全套协议",
+    title: "生电Protocol",
     desc: "完整支持刷沙机、TNT 复制机等技术装置，并对生电模组提供特别优化。",
   },
   {
@@ -269,7 +272,7 @@ export const specs: { name: string; note: string }[] = [
   { name: "Xaero 地图", note: "小地图与导航" },
   { name: "CoreProtect", note: "快速、高效的数据记录及反破坏工具" },
   { name: "轻松放置", note: "便捷建造辅助" },
-  { name: "鞘翅航天", note: "飞行优化体验" },
+  { name: "Elytra Aeronautics", note: "飞行优化体验" },
   { name: "AppleSkin", note: "饱和度信息显示" },
   { name: "Tweakeroo", note: "灵活操作增强" },
   { name: "TACZ", note: "枪械子服模组" },
