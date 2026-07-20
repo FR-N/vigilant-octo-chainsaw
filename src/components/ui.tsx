@@ -177,7 +177,7 @@ export function CopyButton({
         className
       )}
     >
-      {copied ? "已复制" : "复制"}
+      {copied ? "已复制✔️" : "复制"}
       <span className="inline-block h-3 w-3" aria-hidden="true">
         {copied ? (
           <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth={1.5}>
