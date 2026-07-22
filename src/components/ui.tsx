@@ -122,7 +122,7 @@ export function Marquee({ items }: { items: string[] }) {
       <div className="marquee-track flex w-max items-center">
         {loop.map((item, i) => (
           <span key={i} className="flex items-center">
-            <span className="px-6 font-serif text-lg italic text-ink/70 md:text-xl">
+            <span className="px-6 font-serif text-lg text-ink/70 md:text-xl">
               {item}
             </span>
             <span className="text-ink/25" aria-hidden="true">

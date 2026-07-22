@@ -22,21 +22,21 @@ export function Hero() {
             <Reveal>
               <h1 className="font-serif text-6xl leading-[0.92] tracking-tight sm:text-7xl md:text-8xl lg:text-[7.5rem]">
                 <span className="block">{hero.headlineTop}</span>
-                <span className="block italic text-ink/80">
+                <span className="block text-accent">
                   {hero.headlineBottom}
                 </span>
               </h1>
             </Reveal>
 
             <Reveal delay={120}>
-              <p className="mt-8 max-w-xl font-serif text-xl italic leading-relaxed text-ink/65 md:text-2xl">
+              <p className="mt-8 max-w-xl font-serif text-xl leading-relaxed text-ink/65 md:text-2xl">
                 {hero.sub}
               </p>
             </Reveal>
 
             {/* address card */}
             <Reveal delay={200}>
-              <div className="group mt-10 max-w-md border border-ink/20 p-5 transition-colors hover:border-ink md:p-6">
+              <div className="group mt-10 max-w-md border border-ink/20 p-5 transition-colors hover:border-accent md:p-6">
                 <div className="flex items-center justify-between">
                   <span className="text-[0.7rem] uppercase tracking-[0.25em] text-ink/45">
                     服务器地址
@@ -55,7 +55,7 @@ export function Hero() {
               <div className="mt-8 flex flex-wrap items-center gap-x-8 gap-y-4">
                 <a
                   href="#join"
-                  className="group inline-flex items-center gap-3 bg-ink px-6 py-3.5 text-sm tracking-wide text-paper transition-colors hover:bg-ink/85 active:scale-95"
+                  className="group inline-flex items-center gap-3 bg-accent px-6 py-3.5 text-sm tracking-wide text-paper transition-all hover:bg-accent/85 hover:scale-[1.02] active:scale-95"
                 >
                   立即加入
                   <Arrow className="group-hover:translate-x-1.5" />

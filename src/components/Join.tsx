@@ -9,7 +9,7 @@ export function Join() {
           <div className="lg:col-span-4">
             <Reveal>
               <div className="flex items-baseline gap-5">
-                <span className="font-serif text-xl text-ink/30">01</span>
+                <span className="font-serif text-xl text-muted">01</span>
                 <h2 className="font-serif text-3xl tracking-tight md:text-5xl">
                   如何加入
                 </h2>
@@ -39,13 +39,13 @@ export function Join() {
               </dl>
 
               {/* live status */}
-              <div className="mt-8 border border-ink/20 p-5 transition-colors hover:border-ink md:p-6">
+              <div className="mt-8 border border-ink/20 p-5 transition-colors hover:border-accent md:p-6">
                 <div className="flex items-center justify-between">
                   <span className="text-[0.7rem] uppercase tracking-[0.25em] text-ink/45">
                     实时状态
                   </span>
                   <span className="flex items-center gap-2 text-[0.7rem] uppercase tracking-[0.2em] text-ink/45">
-                    <span className="pulse-dot inline-block h-1.5 w-1.5 bg-ink" />
+                    <span className="pulse-dot inline-block h-1.5 w-1.5 bg-accent" />
                     Live
                   </span>
                 </div>

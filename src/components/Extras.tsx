@@ -16,7 +16,7 @@ export function Extras() {
         <Reveal>
           <div className="flex flex-wrap items-end justify-between gap-6">
             <div className="flex items-baseline gap-5">
-              <span className="font-serif text-xl text-ink/30">04</span>
+              <span className="font-serif text-xl text-muted">04</span>
               <h2 className="font-serif text-3xl tracking-tight md:text-5xl">
                 扩展玩法
               </h2>
@@ -32,10 +32,10 @@ export function Extras() {
             <Reveal key={e.title} delay={i * 100} className="h-full">
               <div className="flex h-full flex-col bg-paper p-6 transition-colors duration-300 hover:bg-ink/[0.03] md:p-9">
                 <div className="flex items-baseline gap-4">
-                  <span className="font-serif text-sm text-ink/30">
+                  <span className="font-serif text-sm text-muted">
                     {pad(i + 1)}
                   </span>
-                  <h3 className="font-serif text-2xl tracking-tight transition-all duration-300 hover:italic md:text-3xl">
+                  <h3 className="font-serif text-2xl tracking-tight transition-all duration-300 hover:scale-[1.02] origin-left md:text-3xl">
                     {e.title}
                   </h3>
                 </div>
@@ -51,7 +51,7 @@ export function Extras() {
                         key={si}
                         className="flex items-center gap-4 border-t border-ink/10 pt-3 text-sm text-ink/75"
                       >
-                        <span className="font-serif text-xs text-ink/35">
+                        <span className="font-serif text-xs text-muted/70">
                           0{si + 1}
                         </span>
                         {s}

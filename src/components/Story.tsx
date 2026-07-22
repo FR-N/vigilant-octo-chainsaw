@@ -16,7 +16,7 @@ export function Story() {
                 <h2 className="font-serif text-3xl leading-tight tracking-tight md:text-5xl">
                   {story.headingTop}
                   <br />
-                  <span className="italic text-surface-fg/85">
+                  <span className="text-muted">
                     {story.headingBottom}
                   </span>
                 </h2>
@@ -24,7 +24,7 @@ export function Story() {
             </Reveal>
 
             <Reveal delay={150}>
-              <p className="mt-8 max-w-sm font-serif text-lg italic leading-relaxed text-surface-fg/70">
+              <p className="mt-8 max-w-sm font-serif text-lg leading-relaxed text-surface-fg/70">
                 “{story.quote}”
               </p>
             </Reveal>

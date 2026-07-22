@@ -1,10 +1,13 @@
 @import "tailwindcss";
 
 @theme {
-  --color-paper: #f9f8f6;
-  --color-ink: #1c1c1c;
-  --color-surface: #1c1c1c;
-  --color-surface-fg: #f9f8f6;
+  /* 摩卡咖啡系配色 ☕ — Apple 极简 */
+  --color-paper: #F7F1E8;
+  --color-ink: #2C1810;
+  --color-surface: #2C1810;
+  --color-surface-fg: #F7F1E8;
+  --color-accent: #6F4E37;
+  --color-muted: #8C7561;
 
   --font-serif:  Georgia,"Fraunces","Source Han Serif SC", serif;
   --font-sans: "Hanken Grotesk", "Source Han Sans SC", ui-sans-serif, system-ui,
@@ -28,7 +31,7 @@
   }
 
   ::selection {
-    background-color: var(--color-ink);
+    background-color: var(--color-accent);
     color: var(--color-paper);
   }
 
@@ -52,8 +55,8 @@
   left: 0;
   right: 0;
   bottom: -2px;
-  height: 1px;
-  background-color: currentColor;
+  height: 1.5px;
+  background-color: var(--color-accent);
   transform: scaleX(0);
   transform-origin: right center;
   transition: transform 0.5s var(--ease-editorial);
@@ -75,11 +78,15 @@
 }
 .marquee-track {
   animation: marquee 42s linear infinite;
-}/*
-.marquee-group:hover .marquee-track {
-  animation-play-state: paused;
 }
-*/
+
+/* ---- Accent-tinted interactive borders on hover ---- */
+.choc-border {
+  transition: border-color 0.4s var(--ease-editorial), background-color 0.4s var(--ease-editorial);
+}
+.choc-border:hover {
+  border-color: var(--color-accent);
+}
 /* ---- Live status pulse ---- */
 @keyframes softpulse {
   0%,
@@ -96,12 +103,14 @@
   animation: softpulse 2.4s var(--ease-editorial) infinite;
 }
 
-/* ---- Night mode tokens (warm, editorial — never pure black/white) ---- */
+/* ---- Night mode: deep espresso ---- */
 :root.dark {
-  --color-paper: #1a1814;
-  --color-ink: #ece7db;
-  --color-surface: #221f19;
-  --color-surface-fg: #ece7db;
+  --color-paper: #140D08;
+  --color-ink: #E8D8C3;
+  --color-surface: #1E1410;
+  --color-surface-fg: #E8D8C3;
+  --color-accent: #A08060;
+  --color-muted: #8C7561;
 }
 
 @media (prefers-reduced-motion: reduce) {

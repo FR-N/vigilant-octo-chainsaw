@@ -15,7 +15,7 @@ export function Specs() {
         <Reveal>
           <div className="flex flex-wrap items-end justify-between gap-6">
             <div className="flex items-baseline gap-5">
-              <span className="font-serif text-xl text-ink/30">06</span>
+              <span className="font-serif text-xl text-muted">06</span>
               <h2 className="font-serif text-3xl tracking-tight md:text-5xl">
                 技术栈
               </h2>
@@ -31,10 +31,10 @@ export function Specs() {
           {specs.map((s, i) => (
             <Reveal key={s.name} delay={(i % 5) * 70} className="h-full">
               <div
-                className={`group flex w-full min-h-0 aspect-square flex-col justify-between border-b border-r p-3 transition-colors duration-300 sm:p-5 md:p-6 ${
+                className={`group flex w-full min-h-0 aspect-square flex-col justify-between border-b border-r p-3 transition-all duration-300 sm:p-5 md:p-6 ${
                   i % 2 === 0
-                    ? "border-paper/20 bg-ink text-paper hover:border-paper"
-                    : "border-ink/15 bg-paper text-ink hover:border-ink"
+                    ? "border-paper/20 bg-surface text-paper hover:border-accent"
+                    : "border-ink/15 bg-paper text-ink hover:border-accent"
                 }`}
               >
                 <span
@@ -45,7 +45,7 @@ export function Specs() {
                   {pad(i + 1)}
                 </span>
                 <div className="mt-auto pt-8">
-                  <h3 className="font-serif text-lg tracking-tight transition-all duration-300 group-hover:italic md:text-xl">
+                  <h3 className="font-serif text-lg tracking-tight transition-all duration-300 group-hover:scale-[1.04] origin-bottom-left md:text-xl">
                     {s.name}
                   </h3>
                   <p

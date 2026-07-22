@@ -11,7 +11,7 @@ export function Gallery() {
         <Reveal>
           <div className="flex items-end justify-between gap-6">
             <div className="flex items-baseline gap-5">
-              <span className="font-serif text-xl text-ink/30">05</span>
+              <span className="font-serif text-xl text-muted">05</span>
               <h2 className="font-serif text-3xl tracking-tight md:text-5xl">
                 记录
               </h2>

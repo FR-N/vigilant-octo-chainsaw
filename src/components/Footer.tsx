@@ -19,7 +19,7 @@ export function Footer() {
             <div className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-4">
               <a
                 href="#join"
-                className="group inline-flex items-center gap-3 border border-surface-fg/30 px-6 py-3.5 text-sm tracking-wide transition-colors hover:border-surface-fg active:scale-95"
+                className="group inline-flex items-center gap-3 border border-surface-fg/30 px-6 py-3.5 text-sm tracking-wide transition-all hover:border-accent hover:scale-[1.02] active:scale-95"
               >
                 立即加入
                 <Arrow className="group-hover:translate-x-1.5" />
