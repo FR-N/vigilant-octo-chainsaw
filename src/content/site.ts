@@ -60,6 +60,7 @@ export const ticker: string[] = [
   "BOT",
   "DOM",
   "永不删档",
+  "SkinsRestorer", 
   "Leaves 核心",
   "Xaero",
   "Jade",
